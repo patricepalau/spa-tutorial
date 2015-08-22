@@ -1,43 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<link href="/js/chartist.css" rel="stylesheet">
 	<script src="/js/chartist.js"></script>
+	<link href="/css/chartist.css" rel="stylesheet">
+	<style>
+	.graph {
+		max-width: 500px;
+	}
+	</style>
 </head>
 <body>
-	<div style="max-width: 600px">
+	<div class="graph">
 		<div class="ct-chart ct-perfect-fourth" id="chart"></div>
 	</div>
-	Value: <input id="value" type="text"><br>
-	Date: <input id="date" type="text"><br>
-	<button id="addPointBtn">Add Point</button>
+
 	<script>
-	var labels = ['2015-08-01', '2015-08-02', '2015-08-03', '2015-08-04', '2015-08-05'],
-			dataCurrentUser = [5, 2, 4, 2, 0],
-			dataOtherUser = [10, 9, 8, 5,6],
-			chartData = {
-				labels: labels,
-				series: [dataCurrentUser, dataOtherUser]
+	var chartData = {
+				labels: ['2015-08-01', '2015-08-02', '2015-08-03', '2015-08-04', '2015-08-05'],
+				series: [[5, 2, 4, 2, 0], [10, 9, 8, 5,6]]
 			},
-			chart = new Chartist.Line('#chart', chartData),
-			addPointBtn = document.getElementById('addPointBtn');
-
-	addPointBtn.addEventListener('click', function (e) {
-		var valueInput = document.getElementById('value'),
-				dateInput = document.getElementById('date'),
-				value,
-				date;
-
-		value = Number(valueInput.value);
-		date = dateInput.value;
-
-		var lastValue = dataCurrentUser[dataCurrentUser.length - 1];
-		dataCurrentUser.push(lastValue + value);
-		labels.push(date);
-
-		chart.update();
-
-	});
+			chart = new Chartist.Line('#chart', chartData);
 	</script>
 </body>
 </html>
